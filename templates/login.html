@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>航空管理系统</title>
+    <link rel="stylesheet" href="/static/commons.css"/>
+    <style>
+       
+    html { width:100%; height:100%; } 
+    body {  font-size:18px; font-family:"Arial", "Tahoma", "微软雅黑", "雅黑";
+     line-height:18px; padding:0; margin:0; text-align:center; } 
+    div { padding:18px } 
+    img { border:0px; vertical-align:middle; padding:0px; margin:0px; } 
+    input, button { font-family:"Arial", "Tahoma", "微软雅黑", "雅黑"; border:0;
+     vertical-align:middle; margin:8px; line-height:18px; font-size:18px } 
+    .btns { width:143px; height:40px; background:url("/static/bg12.jpg") no-repeat left top; color:#FFF; }
+
+    </style>
+</head>
+<body background="/static/cloud.png" 
+style=" background-repeat:no-repeat ;
+background-size:100% 100%; 
+background-attachment:fixed;" >
+    <form action="/logins/" method="post" >
+        {% csrf_token %}
+        <h1>航空管理系统</h1>
+        <p>
+            <label for="username">username：</label>
+            <input id="username" name="user" type='text'/>
+        </p>
+        <p>
+             <label for="password">password：</label>
+             <input id="password" name="pwd" type='password'/>
+             <br />
+             <input type="submit" class="btns" onmouseover="this.style.backgroundPosition='left -40px'"
+          onmouseout="this.style.backgroundPosition='left top'" value="submit" /> 
+
+        
+        </p>
+    </form>
+    <script src ="/static/jquery.min.js"></script>
+</body>
+</html>

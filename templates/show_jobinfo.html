@@ -1,0 +1,40 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title>查询结果</title>
+</head>
+<body background="/static/back2.png">
+   	<font color="#000066" size="6">Your search result:</font><br />
+
+
+   <table border="1" class="dataframe">
+	<thead>
+		<tr>
+			<th>position</th>
+			<th>the company</th>
+			<th>location</th>
+			<th>Salary</th>
+			<th>Detailed URL</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for x in out %}
+		<tr>
+			<td>{{ x.jobname }}</td>
+			<td>{{ x.company }}</td>
+			<td>{{ x.location }}</td>
+			<td>{{ x.salary }}</td>
+			<td><a href= {{x.url}}>{{x.url}}</a> </td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+
+
+
+
+/body>
+</html>
+
+

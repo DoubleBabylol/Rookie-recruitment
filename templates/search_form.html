@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>职位信息</title>
+<style type="text/css">
+
+html { width:100%; height:100%; } 
+body { background="/static/cloud.png" font-size:18px; font-family:"Arial", "Tahoma", "微软雅黑", "雅黑";
+ line-height:18px; padding:0; margin:0; text-align:center; } 
+div { padding:18px } 
+img { border:0px; vertical-align:middle; padding:0px; margin:0px; } 
+input, button { font-family:"Arial", "Tahoma", "微软雅黑", "雅黑"; border:0;
+ vertical-align:middle; margin:8px; line-height:18px; font-size:18px } 
+.btns { width:143px; height:40px; background:url("/static/bg12.jpg") no-repeat left top; color:#FFF; } 
+    #box{
+        width:400px;
+        height:300px;
+        left:450px; 
+        top:400px;
+        border:1px solid black;
+        position:absolute;;
+        overflow:hidden;
+    }
+    #red{
+        width:200px;
+        height: 200px;
+    }
+    #green{
+        width:400px;
+        height: 300px;
+    }
+    #blue{
+        width:400px;
+        height: 300px;
+    }
+    .slide{
+        width:400px;
+        height:300px;
+        position:absolute;
+    }
+
+</style>
+
+
+<script type="text/javascript">
+    onload=function(){
+        var arr = document.getElementsByClassName("slide");
+        for(var i=0;i<arr.length;i++){
+            arr[i].style.left = i*400+"px";
+        }
+    }
+    function LeftMove(){
+        var arr = document.getElementsByClassName("slide");//获取三个子div
+        for(var i=0;i<arr.length;i++){
+            var left = parseFloat(arr[i].style.left);
+            left-=2;
+            var width = 400;//图片的宽度
+            if(left<=-width){
+                left=(arr.length-1)*width;//当图片完全走出显示框，拼接到末尾
+                clearInterval(moveId);
+            }
+            arr[i].style.left = left+"px";
+        }
+    }
+    function divInterval(){
+        moveId=setInterval(LeftMove,10);//设置一个10毫秒定时器
+    }
+    
+    
+    timeId=setInterval(divInterval,2000);//设置一个3秒的定时器。
+    
+    function stop(){
+        clearInterval(timeId);
+    }
+    function start(){
+        clearInterval(timeId);
+        timeId=setInterval(divInterval,2000);
+    }
+    
+    //页面失去焦点停止
+    onblur = function(){
+        stop();
+    }
+    //页面获取焦点时开始
+    onfocus = function(){
+        start();
+    }
+</script>
+</head>
+<body background="/static/cloud.png">
+    <div id="box" onmouseover="stop()" onmouseout="start()">
+        <div id="red" class="slide"><img src="/static/wcloud.png" alt="" style="width:400px;height: 300px"></div>
+        <div id="green" class="slide"><img src="/static/c1.png" alt="" style="width:400px;height: 300px""></div>
+        <div id="blue" class="slide"><img src="/static/barChart.jpg" alt="" style="width:400px;height: 300px""></div>
+    </div>
+    <h1>Rookie recruitment</h1>
+
+    <p>Please enter the position you want to check.</p>
+
+   <form action="/search/" method="get">
+        <input type="text" name="q">
+        <p>请输入航线</p>
+        <input type="text" name="p">
+        <p>请输入飞机信息</p>
+        <input type="text" name="m">
+        <br />
+        <select name="form">
+        <option value="Histogram">Histogram</option>
+         <option value="form">form</option>
+        <option value="Word cloud">Word cloud</option>
+        </select>
+        <br />
+        <input type="submit" class="btns" onmouseover="this.style.backgroundPosition='left -40px'"
+          onmouseout="this.style.backgroundPosition='left top'" value="search" /> 
+
+    </form>
+</body>
+</html>
